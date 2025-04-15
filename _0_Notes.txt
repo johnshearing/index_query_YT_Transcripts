@@ -1,0 +1,117 @@
+This project was just an experiment to get familiar with Retreival Augmented Generation (RAG).
+
+If you are interested in the topic the I recommend LightRAG and VideoRAG GitHub repositories.
+https://github.com/HKUDS/LightRAG
+https://github.com/HKUDS/VideoRAG
+
+
+If you want to experiment with these scripts then use the scripts in order.
+Notes about how to use each script are in comments at the top of each script.
+
+Linux command: Create a python virtual environment:
+python3 -m venv db_env
+
+
+Linux command: Activate a python virtual environment:
+source db_env/bin/activate
+
+
+Linux command: Install project dependencies within a virtual environment:
+pip install <some_package>
+
+
+Linux command: Save dependencies to a file:
+pip freeze > requirements.txt
+
+
+Linux command: Recreate an environment:
+pip install -r requirements.txt
+
+
+Linux command: Change the prompt:
+export PS1="(db_env) "
+
+At the bash console, log into PostgreSQL with the following command:
+psql -U js -d ah_db
+
+Or if using the default postgres user:
+psql -U postgres -d your_database
+Or:
+sudo -u postgres psql -d your_database
+
+List tables from inside the PostgreSQL shell using the following command:
+\dt
+
+List all tables using the following command:
+\dt *
+
+List tables for a specific schema, using the following command:
+\dt schema_name.*
+
+For more details about the tables use the following command:
+\dt+ 
+
+To show the structure (schema) of the table transcriptions, for example, use the following command:
+\d transcriptions
+
+To show more details, including storage parameters, use the following command:
+\d+ transcriptions
+
+To show the structure (schema) of the table transcriptions, for example, with SQL then use the following:
+SELECT column_name, data_type, is_nullable, column_default
+FROM information_schema.columns
+WHERE table_name = 'transcriptions';
+
+To clear the screen while in the PostgreSQL (psql) console, use:
+\! clear 
+or use "ctrl + the letter l (el)
+
+To show all databases:
+\l
+
+To switch to a database:
+\c my_database
+
+To exit psql
+\q
+
+To count the number of records in a table:
+SELECT COUNT(*) FROM your_table_name;
+
+To retrieve data from the transcriptions table, for example, use the following SQL:
+SELECT * FROM transcriptions;
+
+The transcriptions table was created using the following SQL:
+-- Table for transcription metadata and full text
+CREATE TABLE transcriptions (
+    id SERIAL PRIMARY KEY,
+    video_id VARCHAR(255),
+    language VARCHAR(10),
+    metadata JSONB,
+    full_text TEXT
+);
+
+
+The segments table was created using the following SQL:
+-- Table for individual segments
+CREATE TABLE segments (
+    id SERIAL PRIMARY KEY,
+    transcription_id INTEGER REFERENCES transcriptions(id),
+    start_time FLOAT,
+    end_time FLOAT,
+    text TEXT,
+    speaker VARCHAR(50)
+);
+
+
+This SQL inserts a new record into the table:
+INSERT INTO users (name, email) VALUES ('Alice', 'alice@example.com');
+
+This SQL Updates a record in the table
+UPDATE users SET email = 'new@example.com' WHERE id = 1;
+
+This SQL changes the owner of the transcriptions table:
+ALTER TABLE transcriptions OWNER TO js;
+
+This SQL deletes the transcriptions table:
+DROP TABLE transcriptions;

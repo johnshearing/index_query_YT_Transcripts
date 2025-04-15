@@ -1,0 +1,9 @@
+*
+!.gitignore
+!_0_Notes.txt
+!_1_process_json_files.py
+!_2_create_faiss_indexes.py
+!_3_query_handler.py
+!_requirements_db_env_commented.txt
+!_requirements_db_env_minimal_top_level.txt
+!_requirements_db_env_original_working.txt

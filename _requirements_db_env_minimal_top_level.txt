@@ -1,0 +1,25 @@
+
+# Core dependencies for vector search and semantic models
+faiss-cpu==1.10.0               # FAISS for efficient similarity search (CPU version)
+sentence-transformers==2.2.2   # HuggingFace-style transformers for sentence embeddings
+
+# Utilities for package management and generating requirements.txt
+pipreqs==0.5.0                 # Generate requirements.txt based on imports
+pipdeptree==2.26.0             # Dependency tree tool (helps identify issues in packages)
+
+# PostgreSQL adapter
+psycopg2-binary==2.9.10        # PostgreSQL adapter (binary for ease of use)
+
+# Safer alternative to pickle for serializing models
+safetensors==0.5.3             # Provides a safer, faster alternative to pickle for model serialization
+
+# Optional Libraries (for additional functionality, use as needed):
+
+# Common scientific and ML libraries
+numpy==2.2.4                   # NumPy (make sure version is compatible with faiss)
+scikit-learn==1.6.1            # Essential for ML algorithms (used by faiss, transformers)
+scipy==1.15.2                  # For scientific calculations (needed by scikit-learn)
+
+# Interactive/Notebook dependencies (only if using Jupyter notebooks)
+ipython==8.12.3                # Interactive shell, used by some tools like pipreqs
+nbconvert==7.16.6              # Convert notebooks to scripts (if you're using Jupyter)
